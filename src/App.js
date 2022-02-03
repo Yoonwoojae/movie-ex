@@ -1,31 +1,21 @@
-import Button from "./Button";
-import styled from "./App.module.css";
-import { useState, useEffect } from "react";
-
-function Hello() {
-
-  function byFn() {
-    console.log("bye");
-  }
-
-  function hiFn() {
-    console.log("hi");
-    return byFn;
-  }
-
-  useEffect(hiFn, []);
-  return <h1> Hello </h1>;
-}
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Detail from "./routes/Detail";
+import Home from "./routes/Home";
 function App() {
-  const [showing, setShowing] = useState(false);
-  const onClick = () => setShowing((prev) => !prev);
-
   return (
-    <div className="App">
-      {showing ? <Hello /> : null}
-      <button onClick={onClick} >{showing ? "Hide" : "Show"}</button>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/abot-us">
+          <h1>Hello</h1>
+        </Route>
+        <Route path="/movie/:id">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
